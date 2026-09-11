@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ata Kürük — software engineer and data engineer in Istanbul. Oracle PL/SQL, C#/.NET, Python and dbt.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://atakuruk.com/">
+<meta property="og:title" content="Ata Kürük">
+<meta property="og:description" content="Software engineer and data engineer in Istanbul. Oracle PL/SQL, C#/.NET, Python and dbt.">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://atakuruk.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%99%EF%B8%8F%3C/text%3E%3C/svg%3E">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; }
+  img { max-width: 100%; }
+</style>
+<title>Ata Kürük</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground:      #F4F4F1;
+    --surface:     #E8EAE2;
+    --surface-hi:  #DFE2D8;
+    --ink:         #1B1E1B;
+    --muted:       #6C7269;
+    --line:        #D8DBD1;
+    --accent:      #2F5D50;
+    --accent-ink:  #F4F4F1;
+    --shadow:      0 1px 2px rgba(27,30,27,.04);
+
+    --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+    --body:    "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono:    "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:     #131512;
+      --surface:    #1D201B;
+      --surface-hi: #272B24;
+      --ink:        #E7EAE3;
+      --muted:      #949A8F;
+      --line:       #2C302A;
+      --accent:     #8CC3AC;
+      --accent-ink: #12211B;
+      --shadow:     0 1px 2px rgba(0,0,0,.3);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:     #131512;
+    --surface:    #1D201B;
+    --surface-hi: #272B24;
+    --ink:        #E7EAE3;
+    --muted:      #949A8F;
+    --line:       #2C302A;
+    --accent:     #8CC3AC;
+    --accent-ink: #12211B;
+    --shadow:     0 1px 2px rgba(0,0,0,.3);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 700px;
+    margin-inline: auto;
+    padding-inline: 20px;
+    padding-block: 68px 56px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- header ---------- */
+
+  .masthead {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .identity { display: flex; align-items: center; gap: 14px; }
+
+  .monogram {
+    width: 46px; height: 46px;
+    flex: 0 0 auto;
+    border-radius: 15px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    display: grid; place-items: center;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 17px;
+    letter-spacing: -.02em;
+  }
+
+  .name-row { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+
+  .name {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 25px;
+    letter-spacing: -.025em;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .handle { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+  .role { font-size: 14px; color: var(--muted); margin-top: 1px; }
+  .role .flag { font-size: 12px; }
+
+  .contact {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--ink);
+    color: var(--ground);
+    padding: 10px 20px;
+    border-radius: 999px;
+    transition: transform .18s ease, opacity .18s ease;
+  }
+  .contact:hover { transform: translateY(-1px); opacity: .88; }
+
+  /* ---------- sections ---------- */
+
+  section { display: flex; flex-direction: column; gap: 16px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  /* ---------- featured ---------- */
+
+  .featured {
+    display: block;
+    background: var(--surface);
+    border-radius: 22px;
+    padding: 28px 30px;
+    position: relative;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .featured:hover { transform: translateY(-2px); background: var(--surface-hi); }
+
+  .featured h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: -.015em;
+    margin: 0 0 10px;
+    padding-right: 48px;
+    text-wrap: balance;
+  }
+
+  .featured p { margin: 0; color: var(--muted); max-width: 56ch; }
+
+  .arrow {
+    position: absolute;
+    top: 26px; right: 26px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ground);
+    display: grid; place-items: center;
+    color: var(--ink);
+    font-size: 15px;
+    transition: transform .2s ease;
+  }
+  .featured:hover .arrow { transform: translate(2px, -2px); }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 14px;
+    margin-top: 20px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .live {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--accent);
+  }
+  .live::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ---------- other works ---------- */
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .work {
+    background: var(--surface);
+    border-radius: 18px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .work:hover { transform: translateY(-2px); background: var(--surface-hi); }
+
+  .work h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .work p { margin: 0; font-size: 14px; color: var(--muted); }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .tag.wip { color: var(--accent); }
+
+  /* ---------- timeline ---------- */
+
+  .timeline {
+    display: grid;
+    gap: 20px;
+    position: relative;
+    padding-top: 2px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 4px; top: 10px; bottom: 10px;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 9px 96px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--line);
+    margin-top: 7px;
+    position: relative;
+    z-index: 1;
+  }
+  .entry:first-child .dot { background: var(--accent); }
+
+  .when {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .what { font-size: 14.5px; }
+  .what strong { font-weight: 600; }
+  .what span { color: var(--muted); }
+
+  /* ---------- stack ---------- */
+
+  .stack { display: grid; gap: 12px; }
+
+  .stack-row {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .stack-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--surface);
+    padding: 5px 11px;
+    border-radius: 8px;
+  }
+
+  /* ---------- links ---------- */
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .link {
+    flex: 1 1 150px;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 13px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .link:hover { background: var(--surface-hi); transform: translateY(-1px); }
+  .link svg { width: 15px; height: 15px; flex: 0 0 auto; }
+
+  .email {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .email:hover { color: var(--ink); }
+  .email svg { width: 15px; height: 15px; }
+
+  footer {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    padding-top: 8px;
+  }
+
+  @media (max-width: 560px) {
+    .page { padding-block: 44px 40px; gap: 44px; }
+    .grid { grid-template-columns: minmax(0, 1fr); }
+    .entry { grid-template-columns: 9px minmax(0, 1fr); row-gap: 4px; }
+    .when { grid-column: 2; padding-top: 0; }
+    .what { grid-column: 2; }
+    .stack-row { grid-template-columns: minmax(0, 1fr); gap: 7px; }
+    .featured { padding: 24px; }
+    .featured h2 { padding-right: 44px; }
+    .contact { order: 3; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="identity">
+      <div class="monogram" aria-hidden="true">AK</div>
+      <div>
+        <div class="name-row">
+          <h1 class="name">Ata Kürük</h1>
+          <span class="handle">@atakrk</span>
+        </div>
+        <div class="role">Software engineer / Data engineer <span class="flag">🇹🇷</span></div>
+      </div>
+    </div>
+    <a class="contact" href="mailto:atakuruk@gmail.com">Contact</a>
+  </header>
+
+  <section>
+    <p class="eyebrow">Currently building</p>
+    <a class="featured" href="https://github.com/atakrk/de-jobs-pipeline" target="_blank" rel="noopener">
+      <span class="arrow" aria-hidden="true">→</span>
+      <h2>German job market pipeline</h2>
+      <p>I wanted to know which tools German data engineering roles actually ask for, so I measured it instead of guessing. Two public job APIs into Postgres, modelled with dbt, deduplicated across sources — and the answer: Azure appears in 32% of postings against AWS at 22%, and 44% state an explicit German-language requirement.</p>
+      <div class="meta">
+        <span class="live">In progress</span>
+        <span>Python · dbt · PostgreSQL</span>
+        <span>2,117 postings</span>
+      </div>
+    </a>
+  </section>
+
+  <section>
+    <p class="eyebrow">Work</p>
+    <div class="grid">
+      <div class="work">
+        <h3>Health insurance claims platform</h3>
+        <p>Claims processing on Oracle PL/SQL and C#/.NET at Agito. Insurer and Medula integrations, bulk data operations, query redesign and production incident response.</p>
+        <span class="tag">2024 — 2026</span>
+      </div>
+      <div class="work">
+        <h3>Privacy-preserving blockchain for IoT</h3>
+        <p>BSc final project at Özyeğin University: a blockchain layer letting IoT devices exchange data without exposing device identity or payload contents.</p>
+        <span class="tag">2023 · Thesis</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Background</p>
+    <div class="timeline">
+
+      <div class="entry">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="when">2026 Sep</span>
+        <div class="what">
+          <strong>Independent work.</strong>
+          <span>Moving from enterprise database development into data engineering. Building pipelines end to end — ingestion, warehousing, dbt modelling and testing — and measuring the German market rather than guessing at it.</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="when">2024 — 2026</span>
+        <div class="what">
+          <strong>Agito, İstanbul.</strong>
+          <span>Health insurance claims platform on Oracle PL/SQL and C#/.NET. Integrations with Medula and insurers including AXA and MAPFRE; a national tariff rollout across 567 institutions; query redesign and production incident response.</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="when">2023 — 2024</span>
+        <div class="what">
+          <strong>Moon Workshop, Antalya.</strong>
+          <span>Web development in PHP and Laravel.</span>
+        </div>
+      </div>
+
+      <div class="entry">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="when">2023 Jun</span>
+        <div class="what">
+          <strong>BSc, Computer Science.</strong>
+          <span>Özyeğin University, İstanbul.</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Stack</p>
+    <div class="stack">
+      <div class="stack-row">
+        <span class="stack-label">Languages</span>
+        <div class="chips">
+          <span class="chip">Java</span>
+          <span class="chip">C#</span>
+          <span class="chip">Python</span>
+          <span class="chip">PL/SQL</span>
+          <span class="chip">PHP</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Data</span>
+        <div class="chips">
+          <span class="chip">Oracle</span>
+          <span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <span class="stack-label">Platform</span>
+        <div class="chips">
+          <span class="chip">dbt</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">.NET</span>
+          <span class="chip">Laravel</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Links / Contact</p>
+    <div class="links">
+      <a class="link" href="https://github.com/atakrk" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+      <a class="link" href="https://linkedin.com/in/atakrk" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.6 5.5H.9V15h2.7V5.5ZM2.25 1a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 0 0 0-3.2ZM15 9.6c0-2.6-1.4-3.8-3.25-3.8-1.5 0-2.17.82-2.55 1.4V5.5H6.5c.04.77 0 9.5 0 9.5h2.7V9.7c0-.24.02-.48.09-.65.19-.48.63-.98 1.37-.98.96 0 1.35.73 1.35 1.81V15H15V9.6Z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <a class="email" href="mailto:atakuruk@gmail.com">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="1" y="3" width="14" height="10" rx="2"/><path d="m1.5 4.5 6.5 4.5 6.5-4.5"/></svg>
+      atakuruk@gmail.com
+    </a>
+  </section>
+
+  <footer>© 2026 Ata Kürük</footer>
+
+</div>
+</body>
+</html>
