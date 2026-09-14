@@ -219,6 +219,13 @@
     width: 7px; height: 7px;
     border-radius: 50%;
     background: var(--accent);
+    animation: breathe 2.4s ease-in-out infinite;
+  }
+  /* Same timing and easing as the dot on dedata.dev, so the two pages read as
+     one thing. Switched off under prefers-reduced-motion by the rule below. */
+  @keyframes breathe {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: .3; transform: scale(.75); }
   }
 
   /* ---------- other works ---------- */
