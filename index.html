@@ -173,6 +173,24 @@
   }
   .featured:hover { transform: translateY(-2px); background: var(--surface-hi); }
 
+  /* The card as a whole opens the dashboard. The link is a transparent sheet
+     over the card rather than a wrapper, so the GitHub link below can sit
+     inside the same card without nesting one anchor in another. */
+  .featured-open {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .featured h2 {
     font-family: var(--display);
     font-weight: 600;
@@ -204,11 +222,25 @@
     align-items: center;
     gap: 8px 14px;
     margin-top: 20px;
+    padding-right: 48px;
     font-family: var(--mono);
     font-size: 12px;
     color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
+
+  .repo {
+    position: absolute;
+    bottom: 24px; right: 26px;
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ground);
+    display: grid; place-items: center;
+    color: var(--muted);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .repo svg { width: 17px; height: 17px; display: block; }
+  .repo:hover { color: var(--ink); transform: translateY(-2px); }
 
   .live {
     display: inline-flex; align-items: center; gap: 6px;
@@ -390,6 +422,7 @@
     .stack-row { grid-template-columns: minmax(0, 1fr); gap: 7px; }
     .featured { padding: 24px; }
     .featured h2 { padding-right: 44px; }
+    .repo { bottom: 20px; right: 20px; }
     .contact { order: 3; }
   }
 
@@ -417,7 +450,10 @@
 
   <section>
     <p class="eyebrow">Currently building</p>
-    <a class="featured" href="https://dedata.dev" target="_blank" rel="noopener">
+    <div class="featured">
+      <a class="featured-open" href="https://dedata.dev" target="_blank" rel="noopener">
+        <span class="sr-only">German job market pipeline — open the live dashboard at dedata.dev</span>
+      </a>
       <span class="arrow" aria-hidden="true">→</span>
       <h2>German job market pipeline</h2>
       <p>I wanted to know which tools German data engineering roles actually ask for, so I measured it instead of guessing. Two public job APIs into Databricks, modelled with dbt, deduplicated across sources and rebuilt every morning. Azure runs about 1.4× AWS — the reverse of the global picture — and roughly two in five postings state an explicit German-language requirement. The exact figures are on the dashboard, and they move.</p>
@@ -426,7 +462,10 @@
         <span>Python · dbt · Databricks · PostgreSQL</span>
         <span>dedata.dev</span>
       </div>
-    </a>
+      <a class="repo" href="https://github.com/atakrk/de-jobs-pipeline" target="_blank" rel="noopener" aria-label="Source code on GitHub">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.64 7.64 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+    </div>
   </section>
 
   <section>
