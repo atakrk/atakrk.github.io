@@ -191,14 +191,29 @@
     white-space: nowrap;
   }
 
+  .featured-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+    padding-right: 48px;
+  }
+
   .featured h2 {
     font-family: var(--display);
     font-weight: 600;
     font-size: 21px;
     letter-spacing: -.015em;
-    margin: 0 0 10px;
-    padding-right: 48px;
+    margin: 0;
     text-wrap: balance;
+  }
+
+  /* dedata.dev's own mark, inlined from its favicon.svg. Its colours are the
+     brand's, not this page's tokens, so they stay fixed in both themes. */
+  .brand {
+    width: 36px; height: 36px;
+    flex: none;
+    border-radius: 8px;
   }
 
   .featured p { margin: 0; color: var(--muted); max-width: 56ch; }
@@ -246,6 +261,7 @@
     display: inline-flex; align-items: center; gap: 6px;
     color: var(--accent);
   }
+  .status { color: var(--accent); }
   .live::before {
     content: "";
     width: 7px; height: 7px;
@@ -298,7 +314,6 @@
     color: var(--muted);
     margin-top: 2px;
   }
-  .tag.wip { color: var(--accent); }
 
   /* ---------- timeline ---------- */
 
@@ -421,7 +436,8 @@
     .what { grid-column: 2; }
     .stack-row { grid-template-columns: minmax(0, 1fr); gap: 7px; }
     .featured { padding: 24px; }
-    .featured h2 { padding-right: 44px; }
+    .featured-head { padding-right: 44px; }
+    .brand { width: 32px; height: 32px; }
     .repo { bottom: 20px; right: 20px; }
     .contact { order: 3; }
   }
@@ -451,11 +467,39 @@
   <section>
     <p class="eyebrow">Currently building</p>
     <div class="featured">
+      <a class="featured-open" href="https://github.com/atakrk/ecommerce-event-pipeline" target="_blank" rel="noopener">
+        <span class="sr-only">E-commerce event pipeline — view the source on GitHub</span>
+      </a>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="featured-head">
+        <h2>E-commerce event pipeline</h2>
+      </div>
+      <p>A pipeline built on a data source I control: synthetic storefront sessions — product views, add-to-cart, checkout, purchase — generated from configurable funnel rates, then processed end to end. The generator and a verifier that checks its output against the configured funnel are done; ingestion and modelling come next.</p>
+      <div class="meta">
+        <span class="status">In progress</span>
+        <span>Python · YAML</span>
+        <span>GitHub</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="eyebrow">Projects</p>
+    <div class="featured">
       <a class="featured-open" href="https://dedata.dev" target="_blank" rel="noopener">
         <span class="sr-only">German job market pipeline — open the live dashboard at dedata.dev</span>
       </a>
       <span class="arrow" aria-hidden="true">→</span>
-      <h2>German job market pipeline</h2>
+      <div class="featured-head">
+        <svg class="brand" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="10" fill="#0b0b0b"/>
+          <text x="32" y="40" text-anchor="middle" fill="#fcfcfb" font-family="IBM Plex Mono, ui-monospace, Menlo, Consolas, monospace" font-size="29" font-weight="600" letter-spacing="1">DE</text>
+          <rect x="11" y="49" width="14" height="4" fill="#5c5c58"/>
+          <rect x="25" y="49" width="14" height="4" fill="#dd0000"/>
+          <rect x="39" y="49" width="14" height="4" fill="#ffce00"/>
+        </svg>
+        <h2>German job market pipeline</h2>
+      </div>
       <p>I wanted to know which tools German data engineering roles actually ask for, so I measured it instead of guessing. Two public job APIs into Databricks, modelled with dbt, deduplicated across sources and rebuilt every morning. Azure runs about 1.4× AWS — the reverse of the global picture — and roughly two in five postings state an explicit German-language requirement. The exact figures are on the dashboard, and they move.</p>
       <div class="meta">
         <span class="live">Live</span>
