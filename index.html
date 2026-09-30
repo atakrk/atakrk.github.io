@@ -306,6 +306,42 @@
 
   .work p { margin: 0; font-size: 14px; color: var(--muted); }
 
+  /* The projects under the featured card: the work-card shape, plus a GitHub
+     mark. The card itself is the link, so the mark is decorative — a second
+     anchor would point where the card already goes. */
+  .projects { margin-top: 14px; }
+
+  .project { position: relative; }
+
+  .project-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+
+  .ghmark {
+    flex: none;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--ground);
+    display: grid; place-items: center;
+    color: var(--muted);
+    transition: color .2s ease;
+  }
+  .ghmark svg { width: 15px; height: 15px; display: block; }
+  .project:hover .ghmark { color: var(--ink); }
+
+  .featured .ghmark {
+    position: absolute;
+    bottom: 24px; right: 26px;
+    width: 34px; height: 34px;
+  }
+  .featured .ghmark svg { width: 17px; height: 17px; }
+  .featured:hover .ghmark { color: var(--ink); }
+
   .tag {
     font-family: var(--mono);
     font-size: 10.5px;
@@ -314,6 +350,7 @@
     color: var(--muted);
     margin-top: 2px;
   }
+  .project-foot .tag { margin-top: 0; }
 
   /* ---------- timeline ---------- */
 
@@ -438,7 +475,7 @@
     .featured { padding: 24px; }
     .featured-head { padding-right: 44px; }
     .brand { width: 32px; height: 32px; }
-    .repo { bottom: 20px; right: 20px; }
+    .repo, .featured .ghmark { bottom: 20px; right: 20px; }
     .contact { order: 3; }
   }
 
@@ -448,6 +485,10 @@
 </style>
 </head>
 <body>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="gh-mark" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.64 7.64 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+</svg>
+
 <div class="page">
 
   <header class="masthead">
@@ -480,6 +521,7 @@
         <span>Python · YAML</span>
         <span>GitHub</span>
       </div>
+      <span class="ghmark" aria-hidden="true"><svg><use href="#gh-mark"/></svg></span>
     </div>
   </section>
 
@@ -507,7 +549,34 @@
         <span>dedata.dev</span>
       </div>
       <a class="repo" href="https://github.com/atakrk/de-jobs-pipeline" target="_blank" rel="noopener" aria-label="Source code on GitHub">
-        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.64 7.64 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <svg aria-hidden="true"><use href="#gh-mark"/></svg>
+      </a>
+    </div>
+
+    <div class="grid projects">
+      <a class="work project" href="https://github.com/atakrk/cdr-rating-migration" target="_blank" rel="noopener">
+        <h3>CDR rating migration</h3>
+        <p>Telecom call records rated twice — once by a legacy Oracle PL/SQL package, once by a Python port of the same rules — then compared row by row. 20,000 records, zero differences, on Decimal arithmetic so the rounding matches exactly.</p>
+        <div class="project-foot">
+          <span class="tag">PL/SQL · Python · Oracle</span>
+          <span class="ghmark" aria-hidden="true"><svg><use href="#gh-mark"/></svg></span>
+        </div>
+      </a>
+      <a class="work project" href="https://github.com/atakrk/kafka-simulator" target="_blank" rel="noopener">
+        <h3>Kafka simulator</h3>
+        <p>A three-broker KRaft cluster in Docker with a Python producer and consumer, so I could watch what partitions, replication and consumer groups actually do instead of reading about them.</p>
+        <div class="project-foot">
+          <span class="tag">Kafka · Docker · Python</span>
+          <span class="ghmark" aria-hidden="true"><svg><use href="#gh-mark"/></svg></span>
+        </div>
+      </a>
+      <a class="work project" href="https://github.com/atakrk/Smart-Clinic-Management-System-IBM" target="_blank" rel="noopener">
+        <h3>Smart clinic management system</h3>
+        <p>A Spring Boot clinic across admin, doctor and patient roles: booking against verified availability, JWT per role, and MySQL for the relational core with MongoDB for prescriptions. Capstone of the IBM Java Developer certificate.</p>
+        <div class="project-foot">
+          <span class="tag">Java · Spring Boot · MySQL · MongoDB</span>
+          <span class="ghmark" aria-hidden="true"><svg><use href="#gh-mark"/></svg></span>
+        </div>
       </a>
     </div>
   </section>
